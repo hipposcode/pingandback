@@ -7,7 +7,7 @@ def ping(hostname):
     p = subprocess.Popen('ping ' + hostname, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     pingStatus = 'ok';
     for line in p.stdout:
-        output = line.rstrip().decode('UTF-8')
+        output = line.rstrip().decode('UTF-8', 'ignore')
         if (output.endswith('unreachable.')):
             # No route from the local system. Packets sent were never put on the wire.
             pingStatus = 'unreacheable'
