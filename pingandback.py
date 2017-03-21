@@ -5,7 +5,7 @@ import socket
 
 def ping(hostname):
     p = subprocess.Popen('ping ' + hostname, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    pingStatus = 'ok';
+    pingStatus = 'ok'
     for line in p.stdout:
         output = line.rstrip().decode('UTF-8', 'ignore')
         if (output.endswith('unreachable.')):
@@ -40,17 +40,19 @@ def printPingResult(hostname):
             outputline = str(outputtuple)
             outputfile.write(outputline + "\n")
         except (socket.gaierror, socket.herror):
-            outputfile.write(hostname + ", address related error - No DNS name found" + "\n")
+            outputfile.write(hostname + ", address related error/other error" + "\n")
         # endIf
 # endPing
 
-
+count = 1
 outputfilename = ("pbresults" + datetime.datetime.now().strftime("%Y%m%d%H%M") + ".txt")
 inputfile = open("hosts.txt")
 outputfile = open(outputfilename, "w")
 try:
     for item in inputfile:
         printPingResult(item.strip())
+        print (count)
+        count = count+1
         # endFor
 finally:
     inputfile.close()
