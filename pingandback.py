@@ -45,7 +45,7 @@ def printPingResult(hostname):
 # endPing
 
 count = 1
-outputfilename = ("pbresults" + datetime.datetime.now().strftime("%Y%m%d%H%M") + ".txt")
+outputfilename = ("pbresults" + datetime.datetime.now().strftime("%Y%m%d - %H%M") + ".txt")
 inputfile = open("hosts.txt")
 outputfile = open(outputfilename, "w")
 try:
